@@ -1118,7 +1118,7 @@ class AudioPlayer {
       // Revert if we fail to activate the audio session.
       _playerEventSubject.add(playerEvent.copyWith(playing: false));
     }
-    await playCompleter.future;
+    await playCompleter.future.then((_) => _playerEventSubject.add(playerEvent.copyWith(playing: false)));
   }
 
   /// Pauses the currently playing media. This method does nothing if
